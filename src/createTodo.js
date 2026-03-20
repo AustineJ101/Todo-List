@@ -1,8 +1,11 @@
-import { storeProjects, initActiveRepo, getActiveRepo} from "./store.js";
+import { getDefaultRepo, initActiveRepo, setDefaultRepo} from "./store.js";
+import { addItemToProject } from "./utils.js";
+
+setDefaultRepo("Apex Projects Limited");
+let defaultRepo = getDefaultRepo();
 
 const projects = {
-    defaultRepo: [],
-    "TOP" : [],
+    [defaultRepo]: [],
 }
 
 initActiveRepo();
@@ -48,14 +51,9 @@ class Todo{
 
 function createTodoItem(title, dueDate, priority){
     let item = new Todo(title, dueDate, priority);
-    addToProjects(item);
-    storeProjects()
+    addItemToProject(item);
     return item;
 }
 
-function addToProjects(item){
-    let activeRepo = getActiveRepo()
-    projects[activeRepo].push(item)
-}
 
 export { createTodoItem, projects }
