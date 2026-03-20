@@ -1,10 +1,11 @@
-import { storeData } from "./store.js";
+import { storeProjects, initActiveRepo, getActiveRepo} from "./store.js";
 
 const projects = {
     defaultRepo: [],
+    "TOP" : [],
 }
 
-let activeRepo = projects.defaultRepo;
+initActiveRepo();
 
 class Checklist{
     isComplete = false;
@@ -47,14 +48,14 @@ class Todo{
 
 function createTodoItem(title, dueDate, priority){
     let item = new Todo(title, dueDate, priority);
-    addToProject(item);
-    storeData()
+    addToProjects(item);
+    storeProjects()
     return item;
 }
 
-function addToProject(item){
-    activeRepo.push(item);
+function addToProjects(item){
+    let activeRepo = getActiveRepo()
+    projects[activeRepo].push(item)
 }
-
 
 export { createTodoItem, projects }
