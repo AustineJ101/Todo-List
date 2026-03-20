@@ -1,11 +1,23 @@
 import { projects } from "./createTodo.js";
 
-function storeData(){
+function storeProjects(){
     localStorage.setItem("projects", JSON.stringify(projects))
 }
 
-function getData(){
+function getProjects(){
     return JSON.parse(localStorage.getItem("projects"))
 }
 
-export { storeData, getData }
+function initActiveRepo(){
+    localStorage.setItem("activeRepo", JSON.stringify("defaultRepo"))
+}
+
+function switchActiveRepo(repoName){
+    localStorage.setItem("activeRepo", JSON.stringify(repoName))
+}
+
+function getActiveRepo(){
+    return JSON.parse(localStorage.getItem("activeRepo"))
+}
+
+export { storeProjects, getProjects, getActiveRepo, initActiveRepo, switchActiveRepo }
