@@ -15,7 +15,15 @@ class Checklist{
 
 class Todo{
   
-    constructor({id = crypto.randomUUID(), title, description, dueDate, priority, isComplete = false, checklist = []}){
+    constructor(
+        {
+            id = crypto.randomUUID(),
+            title, description,
+            dueDate, priority, 
+            isComplete = false, 
+            checklist = []
+        }
+    ){
         this.id = id;
         this.title = title;
         this.description = description;
