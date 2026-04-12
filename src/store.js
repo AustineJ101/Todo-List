@@ -4,7 +4,7 @@ const projects = {
     default: {id: "default", tasks: [], taskCount: 0}
 }
 
-const activeProject = "default";
+const activeProjectId = "default";
 
 
 function getProjects(){
@@ -30,25 +30,28 @@ function getProjects(){
 
 }
 
-function getActiveProject(){
-    const data = localStorage.getItem("activeProject");
+function getActiveProjectId(){
+    const data = localStorage.getItem("activeProjectId");
 
     if(data){
          return JSON.parse(data);
     }else{
-        localStorage.setItem("activeProject", JSON.stringify(activeProject));
+        localStorage.setItem("activeProjectId", JSON.stringify(activeProjectId));
         return JSON.parse(localStorage.getItem("activeProject"));
     }
    
 }
 
-function activateProject(project){
-    localStorage.setItem("activeProject", JSON.stringify(project));
+function activateProject(id){
+
+    localStorage.setItem("activeProjectId", JSON.stringify(id));    
+     
 }
+    
 
 
 function updateProjects(projects){
     localStorage.setItem("projects", JSON.stringify(projects))
 }
 
-export { getProjects, getActiveProject, activateProject, updateProjects }
+export { getProjects, getActiveProjectId, activateProject, updateProjects }
