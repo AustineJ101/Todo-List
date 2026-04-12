@@ -1,5 +1,5 @@
 import { activateProject, getActiveProjectId, getProjects } from "./store.js";
-import { addProject, deleteProject, getActiveProjectName, getTaskCount } from "./utils.js";
+import { addProject, deleteProject, getActiveProjectName, getTaskCount, renameProject } from "./utils.js";
 
 const projectsList = document.querySelector(".projects");
 const activeProject = document.querySelector(".activeRepo h1");
@@ -7,6 +7,7 @@ const tasks = document.querySelector(".activeRepo span");
 const projectInput = document.querySelector("#newProject");
 const addProjectBtn = document.querySelector("#addProjectBtn");
 const deleteSvg = document.querySelector("svg#delete");
+const renameSvg = document.querySelector("svg#edit")
 
 
 function createProjectComponent(key){
@@ -84,6 +85,13 @@ deleteSvg.addEventListener("click", () => {
         deleteProject(projectId)
     }
   
+})
+
+renameSvg.addEventListener("click", () => {
+    let projectId = getActiveProjectId();
+    renameProject(projectId);
+    
+    renderProjects()
 })
 
 export { createProjectComponent, renderProjects }
