@@ -1,16 +1,25 @@
 
-import { getActiveProject, getProjects, updateProjects } from "./store.js";
+import { renderProjects } from "./dom.js";
+import { activateProject, getActiveProjectId, getProjects, updateProjects } from "./store.js";
 
 
 function addItemToActiveProject(item){
     const projects = getProjects()
-    const active = getActiveProject();
+    const id = getActiveProjectId();
 
-    projects[active].tasks.push(item);
+    for(const key in projects){
+        let project = projects[key];
+        if(project.id === id){
+            project.tasks.push(item);
 
-    updateProjects(projects);
+            updateTaskCount(project);
 
-    updateTaskCount()
+            updateProjects(projects);
+
+            return;
+        }
+    }
+    
 
 }
 
@@ -18,7 +27,7 @@ function addProject(project){
     const projects = getProjects();
     projects[project] = {id: crypto.randomUUID(), tasks: [], taskCount: 0};
 
-    updateProjects(projects)
+    updateProjects(projects);
 }
 
 function deleteProject(id){
@@ -32,12 +41,16 @@ function deleteProject(id){
         }
 
         if(project.id === id){
-            delete projects[project];
-            break;
+            delete projects[key];
+
+            activateProject("default")
+            updateProjects(projects);
+            
+            renderProjects()
+            return;
         }
     }
 
-    updateProjects(projects)
 }
     
 
@@ -49,7 +62,7 @@ function renameProject(id){
     for(const key in  projects){
         if(projects[key].id === id){
             let newName = prompt("Enter new project name", `${key}`);
-            let todos = projects[key];
+            let projectDetails = projects[key];
 
             delete projects[key];
 
@@ -57,7 +70,7 @@ function renameProject(id){
                 newName = prompt("Enter new project name", `${key}`);
             }
 
-            projects[newName] = todos;
+            projects[newName] = projectDetails;
 
             updateProjects(projects)
             
@@ -67,14 +80,29 @@ function renameProject(id){
     }
 }
 
-function updateTaskCount(){
-    let projects = getProjects();
-    let active = getActiveProject();
-    let project = projects[active];
-
+function updateTaskCount(project){
+    
     project.taskCount = project.tasks.length;
 
-    updateProjects(projects)
 }
 
-export {addItemToActiveProject, addProject, deleteProject, renameProject, updateTaskCount }
+function getActiveProjectName(id){
+    let projects = getProjects();
+
+    for(const key in projects){
+        let project = projects[key];
+
+        if(project.id === id){
+            return key;
+        }
+    }
+}
+
+function getTaskCount(id){
+    let projects = getProjects();
+    let projectName = getActiveProjectName(id);
+
+    return projects[projectName].taskCount;
+}
+
+export {addItemToActiveProject, addProject, deleteProject, renameProject, updateTaskCount, getActiveProjectName, getTaskCount }
