@@ -1,4 +1,4 @@
-import { getProjects, getActiveProject, updateProjects } from "./store.js";
+import { getProjects, updateProjects, getActiveProjectId } from "./store.js";
 import { addItemToActiveProject, updateTaskCount } from "./utils.js";
 
 class Checklist{
@@ -18,8 +18,10 @@ class Todo{
     constructor(
         {
             id = crypto.randomUUID(),
-            title, description,
-            dueDate, priority, 
+            title,
+            description,
+            dueDate, 
+            priority, 
             isComplete = false, 
             checklist = []
         }
@@ -50,31 +52,47 @@ function createTodoItem (todoObj){
 };
 
 
-function completeTask(id){
+function completeTask(taskId){
     let projects = getProjects();
-    let active  = getActiveProject();
+    let projectId = getActiveProjectId();
 
-    projects[active].forEach(task => {
-        if(task.id === id){
+    for(const key in projects){
+        let project = projects[key];
+        if(project.id === projectId){
+            let task = getTask(project, taskId);
             task.complete();
-        }
-    })
 
-    updateProjects(projects);
+            updateProjects(projects);
+
+            return;
+        }
+    }
+
 }
 
-function deleteTask(id){
+function deleteTask(taskId){
     let projects = getProjects();
-    let active = getActiveProject();
-    let project = projects[active];
+    let projectId = getActiveProjectId();
+    
+    for(const key in projects){
+        let project = projects[key];
+        if(project.id === projectId){
+            let index = project.tasks.findIndex(task => task.id === taskId);
+            project.tasks.splice(index, 1);
 
-    let index = project.tasks.findIndex(task => task.id === id);
+            updateTaskCount(project);
 
-    project.tasks.splice(index, 1);
+            updateProjects(projects);
 
-    updateProjects(projects);
+        }
+   
+    }    
+}
 
-    updateTaskCount();
+function getTask(project, taskId){
+   let tasks = project.tasks;
+   return tasks.find(todo => todo.id === taskId)
+
 }
 
 
