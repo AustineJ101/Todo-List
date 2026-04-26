@@ -1,5 +1,298 @@
-h1{
+body{
     font-family: Georgia, 'Times New Roman', Times, serif;
-    text-decoration: underline;
-    color: midnightblue;
+
+    display: flex;
+}
+
+.sidebar{
+    padding: 10px 10px 30px;
+    min-height: 100vh;
+    width: 350px;
+    position: fixed;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+main{
+    margin-left: 350px;
+}
+.logo{
+    display: flex;
+    align-items: center;
+}
+
+.logo h1{
+    font-size: 28px;
+}
+
+.logo svg{
+    fill: crimson;
+}
+
+.projects > div{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    color: gray;
+    margin-bottom: 10px;
+}
+
+.projects h1{
+    font-size: 16px;
+    width: 100%;
+    cursor: pointer;
+    transition: color 0.25s;
+}
+
+.projects h1:hover{
+    color: black;
+}
+
+.line{
+    width: 10px;
+    height: 2px;
+    background-color: lightgray;
+}
+
+.projects{
+    border-left: 2px solid lightgray;
+}
+
+.active{
+    color: black;
+    background-color: lightgray;
+    padding: 5px 15px;
+    border-radius: 5px;
+    margin-left: -15px;
+}
+
+.projects-container{
+    flex: 1;
+}
+
+.sidebar .footer{
+    border-top: 2px solid lightgray;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.sidebar input{
+    flex: 1;
+    padding: 3px 10px;
+}
+
+.sidebar button{
+    width: 70px;
+    cursor: pointer;
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+main{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    /* background-color: whitesmoke; */
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 25px;
+    border-bottom: 1px solid lightgray;
+    box-shadow: 0 3px 3px -3px rgba(0, 0, 0, 0.4);
+}
+
+.items-container{
+    flex: 1;
+}
+
+.activeRepo > div{
+    display: flex;
+    gap: 10px;
+}
+
+svg{
+    cursor: pointer;
+    transition: transform 0.25s;
+}
+
+svg:hover{
+    transform: scale(1.1)
+}
+
+dialog{
+    border: 2px solid grey;
+    border-radius: 5px;
+    padding: 20px 20px 20px 10px;
+    width: 500px;
+
+}
+
+
+dialog .input{
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+
+textarea{
+    width:100%;
+    margin-left: 10px;
+}
+
+.check-input-container input{
+    margin-left: 10px;
+}
+dialog .action{
+    display: flex;
+    justify-content: space-between;
+}
+
+.action button{
+    border: none;
+    color: white;
+    padding: 5px 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: filter 0.25s;
+}
+
+
+#add-task{
+    background-color: green;
+}
+
+#close-task-dialog{
+    background-color: rgb(168, 33, 33);   
+}
+
+.action button:hover{
+    filter:brightness(1.2);
+}
+
+dialog input:focus,
+dialog textarea:focus{
+    border: 1px solid blue;
+    outline: none;   
+}
+
+select, input, textarea{
+    padding: 3px;
+}
+select:focus{
+    outline: none;
+    border: 1px solid blue;
+}   
+
+.check-input-container{
+   display: grid;
+   grid-template-columns: 2fr 1fr;
+   margin-bottom: 10px;
+}
+
+.check-input-container input{
+    margin-right: -2px;
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 3px;
+}
+
+.check-input-container button{
+    background-color: gray;
+    border: none;
+    border-radius: 0 3px 3px 0;
+    cursor: pointer;
+    transition: filter 0.25s;
+}
+
+.check-input-container button:hover{
+    filter: brightness(1.2)
+}
+
+.checklist-container{
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 3px;
+    margin-left: 10px;
+}
+
+.checklist-container div{
+    display: flex;
+    gap: 8px;
+}
+
+.items-container{
+    padding: 16px;
+}
+
+.todo-item{
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.task-delete{
+    border: none;
+    background-color: transparent;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    
+}
+
+.todo-item:hover .task-delete{
+    opacity: 1;
+    pointer-events: auto;
+}
+.high{
+    border: 2px solid red;
+}
+
+.medium{
+    border: 2px solid orange;
+}
+
+.low{
+    border: 2px solid green;
+}
+
+.headline{
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.statusContainer{
+    display: flex;
+    gap: 16px;
+}
+
+.left-topSection{
+    display: flex;
+}
+label{
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+#completedTask{
+    border: 2px solid grey;
+    background-color: lightgreen;
+}
+
+button#add-to-checklist{
+    background-color: lightgreen;
 }
