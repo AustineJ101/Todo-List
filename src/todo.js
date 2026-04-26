@@ -3,13 +3,9 @@ import { addItemToActiveProject, updateTaskCount } from "./utils.js";
 
 class Checklist{
 
-    constructor(description, isComplete = false){
+    constructor(description, isComplete){
         this.description = description;
         this.isComplete = isComplete
-    }
-
-    complete(){
-        this.isComplete = true;
     }
 }
 
@@ -39,8 +35,8 @@ class Todo{
         this.isComplete = true;
     }
 
-    addItemToChecklist(description){
-        let checkItem = new Checklist(description);
+    addItemToChecklist(description, status){
+        let checkItem = new Checklist(description, status);
         this.checklist.push(checkItem);
     }
 
