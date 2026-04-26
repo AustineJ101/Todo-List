@@ -6,6 +6,86 @@
         <title>Todo List</title>
     </head>
     <body>
-        <h1>My Amazing Todo App</h1>
+        <div class="sidebar">
+            <div class="logo">
+                <svg width="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>triforce</title><path d="M1.5,21L12,3.5L22.5,21H1.5M12,21L17,12H7L12,21Z" /></svg>
+                <h1>MyProjects</h1>
+            </div>
+
+            <div class="projects-container">
+                <h4>PROJECTS</h4>
+                <div class="projects">
+                    <!-- Projects go in here -->
+                </div>
+            </div>
+
+            <div class="footer">
+                <input type="text" id="newProject" placeholder="New Project...">
+                <button id="addProjectBtn">Add</button>
+            </div>
+        </div>
+
+        <main>
+            <header>
+                <div>
+                    <div class="activeRepo">
+                        <div>
+                            <h1></h1>
+                            <svg id="edit" width="25" fill="grey" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                            <svg id="delete" width="25" fill="red" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9,3V4H4V6H5V19A2,2 0 0,0 7,21H17A2,2 0 0,0 19,19V6H20V4H15V3H9M7,6H17V19H7V6M9,8V17H11V8H9M13,8V17H15V8H13Z" /></svg>
+                        </div>
+                        <span></span>
+                    </div>
+                </div>
+
+                <button command="show-modal" commandfor="task-dialog">+ New Task</button>
+
+                <dialog id="task-dialog">
+
+                    <form>
+                        <div class="input">
+                            <label for="task-title">Task Title:</label>
+                            <input type="text" id="task-title" required>
+                        </div>
+                        <label for="description">Description:</label>
+                        <textarea name="description" id="description" rows="4" placeholder="Enter task description here..." required></textarea>
+
+                        <div class="input">
+                            <label for="dueDate">Due Date:</label>
+                            <input id="dueDate" type="date"required>
+                        </div>
+
+                        <div class="input">
+                            <label for="priority">Priority:</label>
+                             <select name="priority" id="priority">
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high" selected>High</option>
+                            </select>
+                        </div>
+
+                        <div class="checklist-container" hidden>
+                            <!-- Check Items automatically render here -->
+                        </div>
+
+                        <label for="checklist-input">Checklist: <i>*Optional</i></label>
+                        <div class="check-input-container">
+                            <input type="text" id="checklist-input">
+                            <button id="add-to-checklist" type="button">Add To Checklist</button>
+                        </div>
+
+                        <div class="action">
+                            <button type="button" id="close-task-dialog">Cancel</button>
+                            <button id="add-task">Done</button>
+                        </div>
+
+                    </form>
+                </dialog>
+            </header>
+
+            <div class="items-container">
+
+            </div>
+        </main>
     </body>
 </html>
