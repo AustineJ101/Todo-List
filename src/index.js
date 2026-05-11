@@ -4,5 +4,6 @@ import { renderProjects } from "./dom.js";
 
 
 
-renderProjects()
+renderProjects();
+renderProjects();
 
