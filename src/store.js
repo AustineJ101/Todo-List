@@ -3,15 +3,11 @@ import { Todo } from "./todo.js";
 const projects = {
     Personal: {
         id: "default",
-        tasks: [{
-                    title: "Sample Task",
-                    dueDate: "2026-04-27",
-                    description: "Promptly complete the sample task",
-                    priority: "Medium",
-                    checklist: [{description: "carry out step 1", isComplete: true}, {description: "Proceed to step 2", isComplete: false}]
-               }], 
-        taskCount: 1}
+        tasks: [], 
+        taskCount: 0}
 }
+
+localStorage.setItem("projects", JSON.stringify(projects)) //Send default project to local storage
 
 const activeProjectId = "default";
 
