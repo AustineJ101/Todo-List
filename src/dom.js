@@ -24,13 +24,6 @@ const addToChecklistBtn = document.querySelector("#add-to-checklist");
 const checklistContainer = document.querySelector(".checklist-container");
 const checklistInput = document.querySelector("#checklist-input");
 
-const item = {
-    title: "Plate Load Test",
-    description: "Bearing Capacity and Settlement Analysis at Kasarani TVC",
-    dueDate: "30th March",
-    priority: "high",
-}
-
 
 function createProjectComponent(projectName){
     let projects = getProjects();
@@ -68,7 +61,7 @@ function renderProjects(){
 
     activeProject.textContent = getActiveProjectName(activeProjectId);
 
-    //
+
     if(activeProjectId === "default"){
         deleteSvg.style.display = "none"
     }else{
