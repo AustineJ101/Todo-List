@@ -86,7 +86,9 @@ function updateTaskCount(project){
 
 }
 
-function getActiveProjectName(id){
+function getActiveProjectName(){
+    let id = getActiveProjectId();
+
     let projects = getProjects();
 
     for(const key in projects){
@@ -98,9 +100,11 @@ function getActiveProjectName(id){
     }
 }
 
-function getTaskCount(id){
+function getTaskCount(){
     let projects = getProjects();
-    let projectName = getActiveProjectName(id);
+    let projectName = getActiveProjectName();
+
+    console.log(projectName)
 
     return projects[projectName].taskCount;
 }
