@@ -7,7 +7,6 @@ const projects = {
         taskCount: 0}
 }
 
-localStorage.setItem("projects", JSON.stringify(projects)) //Send default project to local storage
 
 const activeProjectId = "default";
 
@@ -59,4 +58,4 @@ function updateProjects(projects){
     localStorage.setItem("projects", JSON.stringify(projects))
 }
 
-export { getProjects, getActiveProjectId, activateProject, updateProjects }
+export { getProjects, getActiveProjectId, activateProject, updateProjects, projects }
