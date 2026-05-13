@@ -1,6 +1,8 @@
 # Todo-List
 This is a simple Todo-List application built using HTML, CSS and JavaScript as part of The Odin Project Curriculum. It allows users to create project folders within which their todo tasks will reside.
 
+[Live Preview](https://austinej101.github.io/Todo-List/)
+
 # Features
 - Creating a new project folder.
 - Creating tasks under the same folder.
